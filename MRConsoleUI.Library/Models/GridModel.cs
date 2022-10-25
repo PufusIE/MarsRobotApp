@@ -8,11 +8,11 @@ namespace MRConsoleUI.Library.Models
 {
     public class GridModel
     {
-        public List<int> Grid { get; set; }
+        public List<int> Grid { get; set; } = new List<int>();
 
         public GridModel(string grid)
         {
-
+            grid.Split("x").ToList().ForEach(x => Grid.Add(int.Parse(x)));
         }
     }
 }
