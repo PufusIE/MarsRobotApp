@@ -20,16 +20,16 @@ namespace MRConsoleUI.Library
             switch (direction)
             {
                 case DirectionStatus.North:
-                    
+                    currentPosition[0]++;
                     break;
                 case DirectionStatus.East:
-                    
+                    currentPosition[1]++;
                     break;
                 case DirectionStatus.South:
-                    
+                    currentPosition[0]--;
                     break;
                 case DirectionStatus.West:
-                    
+                    currentPosition[1]--;
                     break;                
             }
         }
