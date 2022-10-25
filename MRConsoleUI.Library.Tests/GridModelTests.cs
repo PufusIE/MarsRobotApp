@@ -10,15 +10,41 @@ namespace MRConsoleUI.Library.Tests
     public class GridModelTests
     {
         [Theory]
-        [InlineData("5x5", 5, 5)]
-        public void GridModelDemensionsShouldBeAsExpectedValue(string grid, int expectedX, int expectedY)
+        [MemberData(nameof(DataList))]
+        public void GridModelDemensionsShouldBeAsExpectedValue(string grid, List<int> expectedList, Exception expectedException = null)
         {
-            List<int> expected = new List<int> { expectedX, expectedY };
+            GridModel model = null;
 
-            GridModel model = new GridModel(grid);
-            var actual = model.Grid;
+            if (expectedException is not null)
+            {
+                Assert.Throws<ArgumentOutOfRangeException>(() => model = new GridModel(grid));
+            }
+            else
+            {
+                model = new GridModel(grid);
 
-            Assert.Equal(expected, actual);
+                List<int> expected = new List<int> { expectedList[0], expectedList[1] };
+
+                var actual = model.Grid;
+
+                Assert.Equal(expected, actual);
+            }
         }
+
+        public static IEnumerable<object[]> DataList => new List<object[]>
+        {
+            new object[] { "5x5", new List<int> { 5, 5 } },
+            new object[] { "-5x0", new List<int>(), new ArgumentOutOfRangeException() },
+            new object[] { "55", new List<int>(), new ArgumentOutOfRangeException() },
+            new object[] { "0x5", new List<int>(), new ArgumentOutOfRangeException() },
+            new object[] { "-5x5", new List<int>(), new ArgumentOutOfRangeException() },
+            new object[] { "", new List<int>(), new ArgumentOutOfRangeException() },
+            new object[] { " ", new List<int>(), new ArgumentOutOfRangeException() },
+            new object[] { "5234234235", new List<int>(), new ArgumentOutOfRangeException() },
+            new object[] { "sdsdkxsdkfh", new List<int>(), new ArgumentOutOfRangeException() },
+            new object[] { null, new List<int>(), new ArgumentOutOfRangeException() },
+            new object[] { "5,5", null, new ArgumentOutOfRangeException() }
+        };
+
     }
 }

@@ -12,7 +12,38 @@ namespace MRConsoleUI.Library.Models
 
         public GridModel(string grid)
         {
-            grid.Split("x").ToList().ForEach(x => Grid.Add(int.Parse(x)));
+            InitializeGrid(grid);
+        }
+
+        private void InitializeGrid(string grid)
+        {
+            try
+            {
+                List<string> parsedGrid = grid.ToLower().Split("x").ToList();
+                parsedGrid.ForEach(x => Grid.Add(int.Parse(x)));
+            }
+            catch (Exception)
+            {
+                throw new ArgumentOutOfRangeException("Invalid value, please try again.");
+            }
+
+            ValidateGrid();
+        }
+
+        private void ValidateGrid()
+        {
+            Grid.ForEach(x =>
+            {
+                if (x <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Invalid value, please try again.");
+                }
+            });
+
+            if (Grid.Count != 2)
+            {
+                throw new ArgumentOutOfRangeException("Invalid value, please try again.");
+            }
         }
     }
 }
