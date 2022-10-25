@@ -20,17 +20,48 @@ namespace MRConsoleUI.Library
             switch (direction)
             {
                 case DirectionStatus.North:
-                    currentPosition[0]++;
+                    MoveNorth(currentPosition, _dimensions);
                     break;
                 case DirectionStatus.East:
-                    currentPosition[1]++;
+                    MoveEast(currentPosition, _dimensions);
                     break;
                 case DirectionStatus.South:
-                    currentPosition[0]--;
+                    MoveSouth(currentPosition);
                     break;
                 case DirectionStatus.West:
-                    currentPosition[1]--;
-                    break;                
+                    MoveWest(currentPosition);
+                    break;
+            }
+        }
+
+        public void MoveNorth(List<int> currentPosition, List<int> gridDimensions)
+        {
+            if (currentPosition[0] != gridDimensions[0])
+            {
+                currentPosition[0]++;
+            }
+        }
+
+        public void MoveEast(List<int> currentPosition, List<int> gridDimensions)
+        {
+            if (currentPosition[1] != gridDimensions[1])
+            {
+                currentPosition[1]++;
+            }
+        }
+
+        public void MoveSouth(List<int> currentPosition)
+        {
+            if (currentPosition[0] != 1)
+            {
+                currentPosition[0]--;
+            }
+        }
+        public void MoveWest(List<int> currentPosition)
+        {
+            if (currentPosition[0] != 1)
+            {
+                currentPosition[1]--;
             }
         }
     }

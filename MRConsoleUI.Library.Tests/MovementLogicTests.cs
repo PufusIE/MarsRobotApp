@@ -26,6 +26,12 @@ namespace MRConsoleUI.Library.Tests
             new object[] { DirectionStatus.East, new List<int> { 3, 3 }, new List<int> { 3, 4 }, new List<int> { 5, 5 } },
             new object[] { DirectionStatus.South, new List<int> { 3, 3 }, new List<int> { 2, 3 }, new List<int> { 5, 5 } },
             new object[] { DirectionStatus.West, new List<int> { 3, 3 }, new List<int> { 3, 2 }, new List<int> { 5, 5 } },
+
+            // Testing out of bounds 
+            new object[] { DirectionStatus.North, new List<int> { 5, 3 }, new List<int> { 5, 3 }, new List<int> { 5, 5 } },
+            new object[] { DirectionStatus.East, new List<int> { 3, 5 }, new List<int> { 3, 5 }, new List<int> { 5, 5 } },
+            new object[] { DirectionStatus.South, new List<int> { 1, 3 }, new List<int> { 1, 3 }, new List<int> { 5, 5 } },
+            new object[] { DirectionStatus.West, new List<int> { 1, 3 }, new List<int> { 1, 3 }, new List<int> { 5, 5 } }
         };
     }
 }
