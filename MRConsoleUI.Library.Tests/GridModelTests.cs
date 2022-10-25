@@ -35,6 +35,8 @@ namespace MRConsoleUI.Library.Tests
         {
             new object[] { "5x5", new List<int> { 5, 5 } },
             new object[] { "-5x0", new List<int>(), new ArgumentOutOfRangeException() },
+            new object[] { "0x0", new List<int>(), new ArgumentOutOfRangeException() },
+            new object[] { "5x5x5", new List<int>(), new ArgumentOutOfRangeException() },
             new object[] { "55", new List<int>(), new ArgumentOutOfRangeException() },
             new object[] { "0x5", new List<int>(), new ArgumentOutOfRangeException() },
             new object[] { "-5x5", new List<int>(), new ArgumentOutOfRangeException() },
