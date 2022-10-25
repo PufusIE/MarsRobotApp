@@ -21,4 +21,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MRConsoleUI.Library\MRConsoleUI.Library.csproj" />
+  </ItemGroup>
+
 </Project>
