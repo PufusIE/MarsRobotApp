@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MRConsoleUI.Library.Logic;
 
 internal class Program
 {
@@ -10,6 +11,8 @@ internal class Program
             .ConfigureServices((context, services) =>
             {
                 services.AddTransient<ILogicService, LogicService>();
+                services.AddTransient<IMovementLogic, MovementLogic>();
+                services.AddTransient<IRobotLogic, RobotLogic>();
             })             
             .Build();
 

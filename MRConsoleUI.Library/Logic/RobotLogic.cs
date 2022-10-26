@@ -1,23 +1,18 @@
 ﻿using MRConsoleUI.Library.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MRConsoleUI.Library
+namespace MRConsoleUI.Library.Logic
 {
-    public class RobotLogic
+    public class RobotLogic : IRobotLogic
     {
         private readonly IMovementLogic? _movementLogic;
-        private GridModel? _grid;
-        private List<char> _path;
         private DirectionStatus _direction;
-        private List<int> _robotPosition;
+        private GridModel? _grid;
+        private List<char>? _path;
+        private List<int>? _robotPosition;
 
-        public RobotLogic()
+        public RobotLogic(IMovementLogic movementLogic)
         {
-            
+            _movementLogic = movementLogic;
         }
 
         public void AskForDimensions()
@@ -61,10 +56,15 @@ namespace MRConsoleUI.Library
                 {
                     if (x != 'F' && x != 'L' && x != 'R')
                     {
-                        Console.WriteLine("Invalid path.");
                         validInput = false;
                     }
                 });
+
+                if (validInput == false)
+                {
+                    Console.WriteLine("Invalid path.");
+                }
+
                 _path = pathInput;
 
             } while (validInput == false);
@@ -122,6 +122,11 @@ namespace MRConsoleUI.Library
                         break;
                 }
             }
+        }
+
+        public void PrintResults()
+        {
+            Console.WriteLine($"{_robotPosition[1]},{_robotPosition[0]},{_direction.ToString()}");
         }
     }
 }

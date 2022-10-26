@@ -1,29 +1,18 @@
 ﻿using MRConsoleUI.Library.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MRConsoleUI.Library
+namespace MRConsoleUI.Library.Logic
 {
-    public class MovementLogic
+    public class MovementLogic : IMovementLogic
     {
-        private readonly List<int> _dimensions;
-
-        public MovementLogic(List<int> gridDimensions)
-        {
-            _dimensions = gridDimensions;
-        }
-        public void MoveOneForward(List<int> currentPosition, DirectionStatus direction)
+        public void MoveRobot(List<int> currentPosition, DirectionStatus direction, List<int> gridDimensions)
         {
             switch (direction)
             {
                 case DirectionStatus.North:
-                    MoveNorth(currentPosition, _dimensions);
+                    MoveNorth(currentPosition, gridDimensions);
                     break;
                 case DirectionStatus.East:
-                    MoveEast(currentPosition, _dimensions);
+                    MoveEast(currentPosition, gridDimensions);
                     break;
                 case DirectionStatus.South:
                     MoveSouth(currentPosition);
@@ -34,7 +23,7 @@ namespace MRConsoleUI.Library
             }
         }
 
-        public void MoveNorth(List<int> currentPosition, List<int> gridDimensions)
+        private void MoveNorth(List<int> currentPosition, List<int> gridDimensions)
         {
             if (currentPosition[0] != gridDimensions[0])
             {
@@ -42,7 +31,7 @@ namespace MRConsoleUI.Library
             }
         }
 
-        public void MoveEast(List<int> currentPosition, List<int> gridDimensions)
+        private void MoveEast(List<int> currentPosition, List<int> gridDimensions)
         {
             if (currentPosition[1] != gridDimensions[1])
             {
@@ -50,16 +39,16 @@ namespace MRConsoleUI.Library
             }
         }
 
-        public void MoveSouth(List<int> currentPosition)
+        private void MoveSouth(List<int> currentPosition)
         {
             if (currentPosition[0] != 1)
             {
                 currentPosition[0]--;
             }
         }
-        public void MoveWest(List<int> currentPosition)
+        private void MoveWest(List<int> currentPosition)
         {
-            if (currentPosition[0] != 1)
+            if (currentPosition[1] != 1)
             {
                 currentPosition[1]--;
             }
