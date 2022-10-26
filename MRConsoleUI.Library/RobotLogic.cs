@@ -9,7 +9,9 @@ namespace MRConsoleUI.Library
 {
     public class RobotLogic
     {
-        public void AskForDimensions(GridModel grid)
+        private GridModel? _grid;
+        private List<char> _path;
+        public void AskForDimensions()
         {
             bool validInput = false;
             do
@@ -20,7 +22,7 @@ namespace MRConsoleUI.Library
 
                 try
                 {
-                    grid = new GridModel(dimensions);
+                    _grid = new GridModel(dimensions);
                 }
                 catch (Exception ex)
                 {
@@ -36,6 +38,11 @@ namespace MRConsoleUI.Library
             Console.WriteLine(message);
             var output = Console.ReadLine();
             return output;
+        }
+
+        public string GetPath(string input)
+        {
+            throw new Exception();
         }
     }
 }

@@ -9,19 +9,18 @@ namespace MRConsoleUI.Library.Tests
 {
     public class RobotLogicTests
     {
-        [Theory]
-        [InlineData("5x5", "5x5")]
-        public void AskForDimensionsShouldReturnExpectedValue(string expectedGrid, string userInput)
+        [Fact]        
+        public void AskForDimensionsShouldReturnExpectedValue()
         {
             GridModel actual = null;
-            GridModel expected = new GridModel(expectedGrid);
+            GridModel expected = new GridModel("5x5");
 
             bool validInput = false;
             do
             {
                 validInput = true;
 
-                string dimensions = userInput;
+                string dimensions = "5x5";
 
                 try
                 {
@@ -38,5 +37,15 @@ namespace MRConsoleUI.Library.Tests
             Assert.Equal(expected.Grid, actual.Grid);
         }
 
+        [Fact]
+        public void GetPathSHouldReturnExpectedValue()
+        {
+            RobotLogic robotLogic = new RobotLogic();
+            var expected = "fffrrllff";
+
+            string actual = robotLogic.GetPath("fffrrllff");
+
+            Assert.Equal(expected, actual);
+        }
     }
 }
