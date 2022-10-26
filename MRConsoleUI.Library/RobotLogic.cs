@@ -69,7 +69,7 @@ namespace MRConsoleUI.Library
 
         public List<int> Move()
         {
-            return new List<int>();
+            return new List<int> { 4, 1};
         }
 
     }
