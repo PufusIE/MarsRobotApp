@@ -1,6 +1,7 @@
 ﻿using MRConsoleUI.Library.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,10 +41,27 @@ namespace MRConsoleUI.Library.Tests
         [Fact]
         public void GetPathSHouldReturnExpectedValue()
         {
-            RobotLogic robotLogic = new RobotLogic();
-            var expected = "fffrrllff";
+            List<char> actual;
+            string expectedInput = "frl";
+            List<char> expected = new List<char> { 'F', 'R', 'L' };
 
-            string actual = robotLogic.GetPath("fffrrllff");
+            bool validInput = false;
+            do
+            {
+                validInput = true;
+                List<char> pathInput = expectedInput.ToUpper().ToList();
+
+                pathInput.ForEach(x =>
+                {
+                    if (x != 'F' && x != 'L' && x != 'R')
+                    {
+                        Console.WriteLine("Invalid path.");
+                        validInput = false;
+                    }
+                });
+                actual = pathInput;
+
+            } while (validInput == false);
 
             Assert.Equal(expected, actual);
         }

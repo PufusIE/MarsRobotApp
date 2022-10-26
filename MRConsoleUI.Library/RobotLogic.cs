@@ -11,6 +11,13 @@ namespace MRConsoleUI.Library
     {
         private GridModel? _grid;
         private List<char> _path;
+        private readonly IMovementLogic _movementLogic;
+
+        public RobotLogic(IMovementLogic movementLogic)
+        {
+            _movementLogic = movementLogic;
+        }
+
         public void AskForDimensions()
         {
             bool validInput = false;
@@ -40,9 +47,25 @@ namespace MRConsoleUI.Library
             return output;
         }
 
-        public string GetPath(string input)
+        public void GetPath()
         {
-            return input;
+            bool validInput = false;
+            do
+            {
+                validInput = true;
+                List<char> pathInput = AskAndGetStringResponse("Please enter robot's path: ").ToUpper().ToList();
+
+                pathInput.ForEach(x =>
+                {
+                    if (x != 'F' && x != 'L' && x != 'R')
+                    {
+                        Console.WriteLine("Invalid path.");
+                        validInput = false;
+                    }
+                });
+                _path = pathInput;
+
+            } while (validInput == false);
         }
     }
 }
