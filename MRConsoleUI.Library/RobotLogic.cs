@@ -42,7 +42,7 @@ namespace MRConsoleUI.Library
 
         public string GetPath(string input)
         {
-            throw new Exception();
+            return input;
         }
     }
 }
