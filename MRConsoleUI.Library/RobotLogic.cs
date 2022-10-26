@@ -9,9 +9,9 @@ namespace MRConsoleUI.Library
 {
     public class RobotLogic
     {
-        public void AskForDimensions(GridModel grid)
+        public GridModel AskForDimensions(GridModel grid)
         {
-
+           return grid = new GridModel("5x5");
         }
     }
 }

@@ -10,16 +10,16 @@ namespace MRConsoleUI.Library.Tests
     public class RobotLogicTests
     {
         [Theory]
-        [InlineData("5x5", "5x5")]
-        public void AskForDimensionsShouldReturnExpectedValue(string expectedGrid, string actualGrid)
+        [InlineData("5x5")]
+        public void AskForDimensionsShouldReturnExpectedValue(string expectedGrid)
         {
             RobotLogic rl = new RobotLogic();
-            GridModel actual = new GridModel("1x1");
+            GridModel actual = null;
             GridModel expected = new GridModel(expectedGrid);
 
-            rl.AskForDimensions(new GridModel(actualGrid));
+            actual = rl.AskForDimensions(new GridModel("1x1"));
 
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected.Grid, actual.Grid);
         }
     }
 }
