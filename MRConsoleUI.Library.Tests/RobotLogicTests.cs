@@ -10,7 +10,7 @@ namespace MRConsoleUI.Library.Tests
 {
     public class RobotLogicTests
     {
-        [Fact]        
+        [Fact]
         public void AskForDimensionsShouldReturnExpectedValue()
         {
             GridModel actual = null;
@@ -65,5 +65,22 @@ namespace MRConsoleUI.Library.Tests
 
             Assert.Equal(expected, actual);
         }
-    }
+
+        [Theory]
+        [MemberData(nameof(DataList))]
+        public void MoveShouldReturnExpectedValue(List<int> expectedPosition, List<char> path)
+        {
+            var rl = new RobotLogic();
+            List<int> robotCoordinates = new List<int> { 1, 1 };
+
+            var actual = rl.Move();
+
+            Assert.Equal(expectedPosition, actual);
+        }
+
+        public static IEnumerable<object[]> DataList => new List<object[]>
+        {
+            new object[] { new List<int> { 4, 1 }, new List<char> { 'F', 'F', 'R', 'F', 'L', 'F', 'L', 'F' } }
+        };
+    } 
 }

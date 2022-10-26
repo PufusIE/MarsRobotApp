@@ -11,11 +11,10 @@ namespace MRConsoleUI.Library
     {
         private GridModel? _grid;
         private List<char> _path;
-        private readonly IMovementLogic _movementLogic;
 
-        public RobotLogic(IMovementLogic movementLogic)
+        public RobotLogic()
         {
-            _movementLogic = movementLogic;
+            
         }
 
         public void AskForDimensions()
@@ -67,5 +66,11 @@ namespace MRConsoleUI.Library
 
             } while (validInput == false);
         }
+
+        public List<int> Move()
+        {
+            return new List<int>();
+        }
+
     }
 }
