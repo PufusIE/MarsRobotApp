@@ -9,9 +9,33 @@ namespace MRConsoleUI.Library
 {
     public class RobotLogic
     {
-        public GridModel AskForDimensions(GridModel grid)
+        public void AskForDimensions(GridModel grid)
         {
-           return grid = new GridModel("5x5");
+            bool validInput = false;
+            do
+            {
+                validInput = true;
+
+                string dimensions = AskAndGetStringResponse("Please enter grid dimensions: ");
+
+                try
+                {
+                    grid = new GridModel(dimensions);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex?.Message);
+                    validInput = false;
+                }
+
+            } while (validInput == false);
+        }
+
+        private string AskAndGetStringResponse(string message)
+        {
+            Console.WriteLine(message);
+            var output = Console.ReadLine();
+            return output;
         }
     }
 }
